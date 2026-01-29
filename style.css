@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Calibri';
+    background-image: linear-gradient(45deg, #ff85f9, #ff00bf); 
+}
+
+main {
+    margin: 20px auto;
+    width: 300px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+button {
+    width: 100%;
+    color: white;
+    font-size: 18px;
+    background-color: #000000;
+    padding: 8px;
+    margin: 5px auto;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color: #353535;
+}
+
+button:active {
+    background-color: #727272;
+}
+
+table tr td {
+    font-size: 20px;
+}
