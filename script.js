@@ -1,45 +1,53 @@
-const apiURL = 'https://api.ipify.org/?format=json'
+const toGetIP = 'https://api.ipify.org/?format=json'
+// 'https://ipinfo.io/185.22.207.155/geo'
 
 document.querySelector('button').onclick = getIP;
 
 
 function getIP() {
-    let ip = ''
-
-    fetch(apiURL).then((response) => {
-            console.log(response)
-            return response.json()
-        })
-        .then((data => {
-            console.log(data)
-            ip += data.ip
-            console.log(ip)
-            return ip
-        }))
     
+
+    fetch(toGetIP)
+        .then((response => {
+            return response.json()
+        }))
+        .then((ip => {
+            console.log(ip)
+
+            fetch(`https://ipinfo.io/${ip.ip}/geo`)
+            .then((resp => {
+                return resp.json()
+            })).then((data => {
+                console.log(data)
+                renderData(data)
+            }))
+        })).catch((e) => {
+            console.error(e)
+        })
 }
 
-function renderData(data) {
+function renderData(ip) {
     document.querySelector('main').innerHTML = 
     `
         <button>Узнать данные</button>
         <table>
             <tr>
                 <td>Ваш IP: </td>
-                <td>${}</td>
+                <td>${ip.ip}</td>
             </tr>
             <tr>
                 <td>Country: </td>
-                <td></td>
+                <td>${ip.country}</td>
             </tr>
             <tr>
                 <td>Region: </td>
-                <td></td>
+                <td>${ip.region}</td>
             </tr>
             <tr>
                 <td>Town: </td>
-                <td></td>
+                <td>${ip.city}</td>
             </tr>
         </table>
     `
 }
+
